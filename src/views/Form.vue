@@ -37,10 +37,10 @@
 		</Fold>
 
 		<Fold label="Dropdown" :open="true">
-			<Fold label="Styles" :open="true">
+			<Fold label="Styles">
 				<Dropdown label="Default style" :items="dropdown1" :active="0" />
 			</Fold>
-			<Fold label="Props" :open="true">
+			<Fold label="Props">
 				<Dropdown label='label-to-left' :items="dropdown2" :active="1" label-to-left />
 				<Dropdown label='label-to-right' :items="dropdown2" :active="2" label-to-right />
 				<Dropdown label='active="ILST" (targeting item.value)' :items="dropdown2" active="ILST" />
@@ -51,7 +51,7 @@
 					<Dropdown label='width="fit-content"' :items="dropdown1" active="Item 3" width="fit-content" />
 				</div>
 			</Fold>
-			<Fold label="Events" :open="true">
+			<Fold label="Events">
 				<div style="display: flex; flex-wrap: nowrap; justify-content: flex-start; width: 100%">
 					<Dropdown label='@update' :items="dropdown1" :active="0" @update="showUpdate" />
 					<Dropdown label='@focus/@blur' :items="dropdown1" :active="1" @focus="showFocus" @blur="showBlur" />
