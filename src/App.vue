@@ -9,6 +9,9 @@
 </template>
 
 <script>
+// Only needed for browser version of panel
+import starlette from 'starlette'
+
 export default {
   name: "App",
   data: () => ({
@@ -20,11 +23,13 @@ export default {
 			// { label: "Sandbox", path: "/sandbox" }
 		]
   }),
+
+  // Only needed for browser version of panel
   created() {
     if (this.$router.params) {
       // 
     } else if (!window.__adobe_cep__) {
-      // starlette.initAs('ILST', 'darkest')
+      starlette.initAs('ILST', 'darkest')
     }
   }
 };
