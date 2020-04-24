@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionList>
+    <Extension Id="com.brutalism-api.panel">
+        <HostList>
+            <Host Name="ILST" Port="4466" />
+            <Host Name="AEFT" Port="4467" />
+            <Host Name="PHXS" Port="4468" />
+            <Host Name="PPRO" Port="4469" />
+            <Host Name="IDSN" Port="4470" />
+            <Host Name="AUDT" Port="4471" />
+        </HostList>
+    </Extension>
+</ExtensionList>
