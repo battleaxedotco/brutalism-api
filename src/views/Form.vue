@@ -1,7 +1,7 @@
 <template>
 	<Wrapper>
 		<Fold label="Toggle" :open="true">
-			<Fold label="Style">
+			<Fold label="Styles">
 				<Toggle label="Checkbox (default)" :state="true" checkbox />
 				<Toggle label="Radio" :state="true" radio />
 				<Toggle label="Switch" :state="false" size="18px" switch />
