@@ -23,8 +23,11 @@ export default {
 		]
   }),
   created() {
-    if (!window.__adobe_cep__)
-      starlette.initAs('ILST', 'darkest')
+    if (this.$router.params) {
+      
+    } else if (!window.__adobe_cep__)
+      // starlette.initAs('ILST', 'darkest')
+    
   }
 };
 </script>
