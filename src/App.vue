@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Menus debug refresh />
+    <Menus refresh />
 		<Panel>
 			<router-view />
 		</Panel>
-		<Tabs :breakpoint="80" invert :routes="routes" />
+		<Tabs invert :routes="routes" />
 	</div>
 </template>
 

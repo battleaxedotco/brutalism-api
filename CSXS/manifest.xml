@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ExtensionManifest ExtensionBundleId="com.brutalism-api" ExtensionBundleVersion="1.0.0" ExtensionBundleName="brutalism-api" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest ExtensionBundleId="com.brutalism-api" ExtensionBundleVersion="1.0.1" ExtensionBundleName="brutalism-api" Version="8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ExtensionList>
-    <Extension Id="com.brutalism-api.panel" Version="1.0.0" />
+    <Extension Id="com.brutalism-api.panel" Version="1.0.1" />
   </ExtensionList>
   <ExecutionEnvironment>
     <HostList>

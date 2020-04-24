@@ -1,6 +1,6 @@
 {
   "name": "brutalism-api",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -13,7 +13,7 @@
     "help": "bombino-cmd help"
   },
   "dependencies": {
-    "brutalism": "^1.1.1",
+    "brutalism": "^1.1.2",
     "cep-spy": "^1.1.1",
     "core-js": "^3.1.2",
     "lokney": "^1.0.0",
