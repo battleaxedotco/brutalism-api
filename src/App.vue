@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import starlette from 'starlette'
-
 export default {
   name: "App",
   data: () => ({
@@ -24,10 +22,10 @@ export default {
   }),
   created() {
     if (this.$router.params) {
-      
-    } else if (!window.__adobe_cep__)
+      // 
+    } else if (!window.__adobe_cep__) {
       // starlette.initAs('ILST', 'darkest')
-    
+    }
   }
 };
 </script>
