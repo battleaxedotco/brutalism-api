@@ -16,22 +16,18 @@ export default {
   name: "App",
   data: () => ({
     routes: [
-			{ label: "Buttons", path: "/" },
-			{ label: "Inputs", path: "/inputs" },
-			{ label: "Form", path: "/form" },
-			// { label: "AEUX", path: "/aeux" },
-			// { label: "Sandbox", path: "/sandbox" }
+      { label: "Home", name: "home" },
+			{ label: "Buttons", name: "buttons" },
+			{ label: "Inputs", name: "inputs" },
+			{ label: "Form", name: "form" },
 		]
   }),
 
   // Only needed for browser version of panel
   created() {
-    if (this.$router.params) {
-      // 
-    } else if (!window.__adobe_cep__) {
-      starlette.initAs('ILST', 'darkest')
-    }
-  }
+    if (!window.__adobe_cep__) starlette.initAs('ILST', 'darkest');
+    console.log(this.$route.path)
+  },
 };
 </script>
 

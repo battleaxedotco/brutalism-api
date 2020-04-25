@@ -1,11 +1,7 @@
 <template>
 	<Wrapper>
 		<Fold label="Button" :open="true">
-			<Fold label="Styles">
-				<!-- 
-					Row is used here to give buttons a natural flexbox and wrapping layout
-					Without it, buttons fill available space unless block prop is set
-				-->
+			<Fold label="Styles" :open="getFoldData('button', 'styles').open">
 				<Row>
 					<Button label="Normal" />
 					<Button primary>Primary</Button>
@@ -44,7 +40,7 @@
 				<Button block label="Block button (fill horizontal space)"/>
 			</Fold>
 
-			<Fold label="Props">
+			<Fold label="Props" :open="getFoldData('button', 'props').open">
 				<Row>
 					<Button label="Button label" />
 					<Button bg="#389672">bg="#389672"</Button>
@@ -63,13 +59,13 @@
 				</Row>
 			</Fold>
 
-			<Fold label="Events">
+			<Fold label="Events" :open="getFoldData('button', 'events').open">
 				<Button @click="testClick" label='@click="testClick"' />
 			</Fold>
 		</Fold>
 
 		<Fold label="Button-Group" :open="true">
-			<Fold label="Styles">
+			<Fold label="Styles" :open="getFoldData('button-group', 'styles').open">
 				<Button-Group label="default">
 					<Button icon="github-circle" />
 					<Button icon="slack" />
@@ -94,7 +90,7 @@
 				</Button-Group>
 			</Fold>
 
-			<Fold label="Props">
+			<Fold label="Props" :open="getFoldData('button-group', 'props').open">
 				<div style="display: flex; flex-wrap: nowrap">
 					<Button-Group label='left (default)' left width="33vw">
 						<Button icon="github-circle" />
@@ -140,7 +136,7 @@
 				</Button-Group>
 			</Fold>
 
-			<Fold label="Events">
+			<Fold label="Events" :open="getFoldData('button-group', 'events').open">
 				<Button-Group label='exclusive @update' exclusive :active="tool" @update="reportActive">
 					<Button icon="vector-point"/>
 					<Button icon="vector-line"/>
@@ -175,7 +171,7 @@
 		</Fold>
 
 		<Fold label="Tooltips" :open="true">
-			<Fold label="Positioning">
+			<Fold label="Positioning" :open="getFoldData('tooltips', 'positioning').open">
 				<Button-Group grid>
 					<Button block tooltip="Default">Default tooltip</Button>
 					<Button block no-bold tooltip="Default">No bold tooltip</Button>
@@ -200,7 +196,7 @@
 					/>
 				</Button-Group>
 			</Fold>
-			<Fold label="Timing">
+			<Fold label="Timing" :open="getFoldData('tooltips', 'timing').open">
 				<Row>
 					<Button-Group grid>
 						<Button
@@ -247,6 +243,55 @@ export default {
 	data: () => ({
 		brightness: 0,
 		tool: 0,
+		folds: [
+			{
+				parent: 'button',
+				children: [
+					{
+						name: 'styles',
+						open: false,
+					},
+					{
+						name: 'props',
+						open: false,
+					},
+					{
+						name: 'events',
+						open: false,
+					}
+				]
+			},
+			{
+				parent: 'button-group',
+				children: [
+					{
+						name: 'styles',
+						open: false,
+					},
+					{
+						name: 'props',
+						open: false,
+					},
+					{
+						name: 'events',
+						open: false,
+					}
+				]
+			},
+			{
+				parent: 'tooltips',
+				children: [
+					{
+						name: 'positioning',
+						open: false,
+					},
+					{
+						name: 'timing',
+						open: false,
+					}
+				]
+			},
+		]
 	}),
 	methods: {
 		testClick() {
@@ -254,6 +299,32 @@ export default {
 		},
 		reportActive(data) {
 			console.log(data)
+		},
+		getFoldData(parent, child) {
+			return this.folds.find(item => {
+				return item.parent == parent;
+			}).children.find(item => {
+				return item.name == child;
+			})
+		},
+		checkRouterParams() {
+			if (this.$route.params && this.$route.params.parent && this.$route.params.child) {
+				let target = this.getFoldData(this.$route.params.parent, this.$route.params.child);
+				if (target) target.open = true;
+			}
+		}
+	},
+	mounted() {
+		this.checkRouterParams();
+	},
+	computed: {
+		routePath() {
+			return this.$route.path;
+		}
+	},
+	watch: {
+		routePath() {
+			this.checkRouterParams();
 		}
 	}
 };
