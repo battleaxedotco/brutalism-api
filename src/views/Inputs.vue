@@ -1,6 +1,6 @@
 <template>
 	<Wrapper>
-		<Fold label="Input-Scroll (numbers)" :open="true">
+		<Fold label="Input-Scroll (numbers)" :open="checkFoldParent('input-scroll')">
 			<Fold label="Styles" :open="getFoldData('input-scroll', 'styles').open">
 				<Input-Scroll label="default" :value="100" />
 				<Input-Scroll label="flat" flat :value="100" />
@@ -85,7 +85,7 @@
 				<Input-Scroll label="debug" debug />
 			</Fold>
 		</Fold>
-		<Fold label="Input (single line text)" :open="true">
+		<Fold label="Input (single line text)" :open="checkFoldParent('input')">
 			<Fold label="Styles" :open="getFoldData('input', 'styles').open">
 				<Input value="Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead." label="Default" truncate />
 				<Input value="value" flat label="Flat" auto-select />
@@ -143,7 +143,7 @@
 				<Input value="@append-outer-click content" append-outer-icon="find-replace" @append-outer-click="message" />
 			</Fold>
 		</Fold>
-		<Fold label="TextArea" :open="true">
+		<Fold label="TextArea" :open="checkFoldParent('textarea')">
 			<Fold label="Styles" :open="getFoldData('textarea', 'styles').open">
 				<TextArea
 					value="Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris."

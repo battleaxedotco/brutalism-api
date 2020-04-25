@@ -1,6 +1,6 @@
 <template>
 	<Wrapper>
-		<Fold label="Button" :open="true">
+		<Fold label="Button" :open="checkFoldParent('button')">
 			<Fold label="Styles" :open="getFoldData('button', 'styles').open">
 				<Row>
 					<Button label="Normal" />
@@ -64,7 +64,7 @@
 			</Fold>
 		</Fold>
 
-		<Fold label="Button-Group" :open="true">
+		<Fold label="Button-Group" :open="checkFoldParent('button-group')">
 			<Fold label="Styles" :open="getFoldData('button-group', 'styles').open">
 				<Button-Group label="default">
 					<Button icon="github-circle" />
@@ -170,7 +170,7 @@
 			</Fold>
 		</Fold>
 
-		<Fold label="Tooltips" :open="true">
+		<Fold label="Tooltips" :open="checkFoldParent('tooltips')">
 			<Fold label="Positioning" :open="getFoldData('tooltips', 'positioning').open">
 				<Button-Group grid>
 					<Button block tooltip="Default">Default tooltip</Button>

@@ -1,10 +1,8 @@
 <template>
   <div class="appicon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 32" width="34px" height="32px" style="width: 34px;">
-      <g id="frame">
-        <rect class="appBG" :style="getStyle('bg')" x="1.5" y="1.5" width="31" height="29" />
-        <path class="appFG" :style="getStyle('fg')" d="M31,3V29H3V3H31m3-3H0V32H34V0Z" />
-      </g>
+      <rect :style="getStyle('bg')" x="1.5" y="1.5" width="31" height="29" />
+      <path :style="getStyle('fg')" d="M31,3V29H3V3H31m3-3H0V32H34V0Z" />
       <path
           class="appFG"
           :style="getStyle('fg')"
@@ -98,14 +96,4 @@ export default {
 </script>
 
 <style>
-
-.appicon {
-  width: 36px;
-}
-.appBG {
-  fill: #545454;
-}
-.appFG {
-  fill: #979797;
-}
 </style>

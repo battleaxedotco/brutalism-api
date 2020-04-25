@@ -150,6 +150,12 @@ export default {
         let target = this.getFoldData(this.$route.params.parent, this.$route.params.child);
         if (target) target.open = true;
       }
+    },
+    checkFoldParent(name) {
+      if (this.$route.params && this.$route.params.parent)
+        return this.$route.params.parent == name;
+      else if (!this.$route.params.parent) return true;
+      else return false;
     }
   },
   mounted() {

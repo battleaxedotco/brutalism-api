@@ -1,6 +1,6 @@
 <template>
 	<Wrapper>
-		<Fold label="Toggle" :open="true">
+		<Fold label="Toggle" :open="checkFoldParent('toggle')">
 			<Fold label="Styles" :open="getFoldData('toggle', 'styles').open">
 				<Toggle label="Checkbox (default)" :state="true" checkbox />
 				<Toggle label="Radio" :state="true" radio />
@@ -36,7 +36,7 @@
 			</Fold>
 		</Fold>
 
-		<Fold label="Dropdown" :open="true">
+		<Fold label="Dropdown" :open="checkFoldParent('dropdown')">
 			<Fold label="Styles" :open="getFoldData('dropdown', 'styles').open">
 				<Dropdown label="Default style" :items="dropdown1" :active="0" />
 			</Fold>
