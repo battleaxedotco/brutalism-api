@@ -239,59 +239,14 @@
 </template>
 
 <script>
+// Adding browser route matching
+import routeMatcher from '../mixins/routeMatching'
+
 export default {
+	mixins: [routeMatcher],
 	data: () => ({
 		brightness: 0,
-		tool: 0,
-		folds: [
-			{
-				parent: 'button',
-				children: [
-					{
-						name: 'styles',
-						open: false,
-					},
-					{
-						name: 'props',
-						open: false,
-					},
-					{
-						name: 'events',
-						open: false,
-					}
-				]
-			},
-			{
-				parent: 'button-group',
-				children: [
-					{
-						name: 'styles',
-						open: false,
-					},
-					{
-						name: 'props',
-						open: false,
-					},
-					{
-						name: 'events',
-						open: false,
-					}
-				]
-			},
-			{
-				parent: 'tooltips',
-				children: [
-					{
-						name: 'positioning',
-						open: false,
-					},
-					{
-						name: 'timing',
-						open: false,
-					}
-				]
-			},
-		]
+		tool: 0
 	}),
 	methods: {
 		testClick() {
@@ -299,32 +254,6 @@ export default {
 		},
 		reportActive(data) {
 			console.log(data)
-		},
-		getFoldData(parent, child) {
-			return this.folds.find(item => {
-				return item.parent == parent;
-			}).children.find(item => {
-				return item.name == child;
-			})
-		},
-		checkRouterParams() {
-			if (this.$route.params && this.$route.params.parent && this.$route.params.child) {
-				let target = this.getFoldData(this.$route.params.parent, this.$route.params.child);
-				if (target) target.open = true;
-			}
-		}
-	},
-	mounted() {
-		this.checkRouterParams();
-	},
-	computed: {
-		routePath() {
-			return this.$route.path;
-		}
-	},
-	watch: {
-		routePath() {
-			this.checkRouterParams();
 		}
 	}
 };

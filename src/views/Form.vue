@@ -1,7 +1,7 @@
 <template>
 	<Wrapper>
 		<Fold label="Toggle" :open="true">
-			<Fold label="Styles">
+			<Fold label="Styles" :open="getFoldData('toggle', 'styles').open">
 				<Toggle label="Checkbox (default)" :state="true" checkbox />
 				<Toggle label="Radio" :state="true" radio />
 				<Toggle label="Switch" :state="false" size="18px" switch />
@@ -16,7 +16,7 @@
 					<div v-else>Click me! Slot content if false</div>
 				</Toggle>
 			</Fold>
-			<Fold label="Props">
+			<Fold label="Props" :open="getFoldData('toggle', 'props').open">
 				<Row>
 					<Toggle on-icon="lock" off-icon="lock-open-variant" />
 					<Toggle on-icon="bell" off-icon="bell-off" />
@@ -29,7 +29,7 @@
 				<Toggle label='on-icon="alarm" off-icon="alarm-off"' on-icon="alarm" off-icon="alarm-off"/>
 				<Toggle label='size="32px"' size="32px" />
 			</Fold>
-			<Fold label="Events">
+			<Fold label="Events" :open="getFoldData('toggle', 'events').open">
 				<Toggle label="@click" @click="showClick"/>
 				<Toggle label='@mouseEnter/@mouseExit' @mouseenter="showEnter" @mouseleave="showExit" />
 				<Toggle label='@update' @update="showState" />
@@ -37,10 +37,10 @@
 		</Fold>
 
 		<Fold label="Dropdown" :open="true">
-			<Fold label="Styles">
+			<Fold label="Styles" :open="getFoldData('dropdown', 'styles').open">
 				<Dropdown label="Default style" :items="dropdown1" :active="0" />
 			</Fold>
-			<Fold label="Props">
+			<Fold label="Props" :open="getFoldData('dropdown', 'props').open">
 				<Dropdown label='label-to-left' :items="dropdown2" :active="1" label-to-left />
 				<Dropdown label='label-to-right' :items="dropdown2" :active="2" label-to-right />
 				<Dropdown label='active="ILST" (targeting item.value)' :items="dropdown2" active="ILST" />
@@ -51,7 +51,7 @@
 					<Dropdown label='width="fit-content"' :items="dropdown1" active="Item 3" width="fit-content" />
 				</div>
 			</Fold>
-			<Fold label="Events">
+			<Fold label="Events" :open="getFoldData('dropdown', 'events').open">
 				<div style="display: flex; flex-wrap: nowrap; justify-content: flex-start; width: 100%">
 					<Dropdown label='@update' :items="dropdown1" :active="0" @update="showUpdate" />
 					<Dropdown label='@focus/@blur' :items="dropdown1" :active="1" @focus="showFocus" @blur="showBlur" />
@@ -62,7 +62,11 @@
 </template>
 
 <script>
+// Adding browser route matching
+import routeMatcher from '../mixins/routeMatching'
+
 export default {
+	mixins: [routeMatcher],
 	data: () => ({
 		realState: false,
 		slotState: false,
