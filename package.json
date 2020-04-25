@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "brutalism": "^1.1.4",
-    "cep-spy": "^1.1.1",
+    "cep-spy": "^1.1.11",
     "core-js": "^3.1.2",
     "lokney": "^1.0.0",
     "starlette": "^1.0.2",

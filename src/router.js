@@ -7,7 +7,7 @@ export default new Router({
     {
       path: "/",
       name: 'home',
-      component: () => import("./views/AEUX.vue")
+      component: () => import("./views/Home.vue")
     },
     {
       path: "/buttons/:parent?/:child?",
