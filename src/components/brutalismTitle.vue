@@ -1,13 +1,18 @@
 <template>
   <div class="title">
     <span class="centered" style="padding: 0px">brutalism</span>
-    <span class="centered anno" style="padding: 0px;">by battleaxe</span>
+    <span class="centered anno" style="padding: 0px;">{{subtitle}}</span>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    subtitle: {
+      type: String,
+      default: 'by battleaxe'
+    }
+  }
 }
 </script>
 

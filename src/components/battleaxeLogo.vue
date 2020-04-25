@@ -27,7 +27,6 @@ import { openURL } from 'brutalism'
 export default {
   methods: {
     openURL(url) {
-      console.log('click')
       openURL(url)
     }
   }
