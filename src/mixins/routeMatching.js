@@ -138,13 +138,11 @@ export default {
   methods: {
     // All code below this line is just for dynamic route matching on browser version of panel.
     getFoldData(parent, child) {
-      console.log(parent, child)
       let target = this.folds.find(item => {
         return item.parent == parent;
       }).children.find(item => {
         return item.name == child;
       })
-      console.log(target)
       return target
     },
     checkRouterParams() {
