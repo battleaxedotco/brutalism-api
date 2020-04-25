@@ -69,7 +69,7 @@
 				<Input-Scroll label="disabled" :value="20" disabled />
 			</Fold>
 
-			<Fold label="Events" :open="getFoldData('events', 'events').open">
+			<Fold label="Events" :open="getFoldData('input-scroll', 'events').open">
 				<Input-Scroll
 					label="Change/Update"
 					@change="changeVal"
