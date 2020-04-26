@@ -11,6 +11,7 @@
       <Host Name="PPRO" Version="[13,99.9]" />
       <Host Name="IDSN" Version="[14,99.9]" />
       <Host Name="AUDT" Version="[12,99.9]" />
+      <Host Name="FLPR" Version="[18,99.9]" />
     </HostList>
     <LocaleList>
       <Locale Code="All" />

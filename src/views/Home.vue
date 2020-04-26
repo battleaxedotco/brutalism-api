@@ -52,7 +52,7 @@ export default {
   flex-direction: column;
   margin: auto;
   width: 300px;
-  height: 580px;
+  height: 570px;
   min-height: 550px;
 }
 </style>

@@ -27,8 +27,7 @@ import {
   Tabs,
   TextArea,
   Toggle,
-  Wrapper,
-  Autofocus,
+  Wrapper
 } from "brutalism";
 
 Vue.component("Alert", Alert);
