@@ -15,8 +15,6 @@
         <Button flat toolbar goto="" icon="gmail" icon-size="24px" />
         <Button flat toolbar goto="https://twitter.com/battleaxedotco" icon="twitter" icon-size="24px" />
         <Button flat toolbar goto="https://github.com/adamplouff" icon="github-circle" icon-size="24px" />
-        <Button flat toolbar goto="https://youtube.com/channel/UCu1Buv7nvtRTc_kViPCqjQw" icon="youtube" icon-size="24px" />
-        <Button flat toolbar goto="http://facebook.com/battleaxedotco" icon="facebook" icon-size="24px" />
       </Button-Group>
       <Button-Group label="Tom">
         <Button 
