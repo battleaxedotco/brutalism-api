@@ -26,7 +26,7 @@ export default {
   // Only needed for browser version of panel
   created() {
     if (!window.__adobe_cep__) starlette.initAs('ILST', 'darkest');
-    console.log(this.$route.path)
+    // console.log(this.$route.path)
   },
 };
 </script>
