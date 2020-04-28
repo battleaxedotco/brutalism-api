@@ -15,6 +15,8 @@
         <Button flat toolbar goto="" icon="gmail" icon-size="24px" />
         <Button flat toolbar goto="https://twitter.com/battleaxedotco" icon="twitter" icon-size="24px" />
         <Button flat toolbar goto="https://github.com/adamplouff" icon="github-circle" icon-size="24px" />
+        <Button flat toolbar goto="https://www.youtube.com/channel/UCu1Buv7nvtRTc_kViPCqjQw" icon="youtube" icon-size="24px" />
+        <Button flat toolbar goto="http://facebook.com/battleaxedotco" icon="facebook" icon-size="24px" />
       </Button-Group>
       <Button-Group label="Tom">
         <Button 
@@ -25,8 +27,6 @@
           style="margin-left: 11px;" />
         <Button flat toolbar goto="https://twitter.com/inventsable" icon="twitter" icon-size="24px" />
         <Button flat toolbar goto="https://github.com/Inventsable" icon="github-circle" icon-size="24px" />
-        <Button flat toolbar goto="https://youtube.com/channel/UC7PUAV_C5QHhadl8Be00l_A" icon="youtube" icon-size="24px" />
-        <Button flat toolbar goto="https://facebook.com/profile.php?id=100042478777639" icon="facebook" icon-size="24px" />
       </Button-Group>
     </div>
 
