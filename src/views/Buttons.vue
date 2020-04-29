@@ -60,7 +60,10 @@
 			</Fold>
 
 			<Fold label="Events" :open="getFoldData('button', 'events').open">
-				<Button @click="testClick" label='@click="testClick"' />
+				<Button-Group grid>
+					<Button @click="testClick" label='@click="testClick"' />
+					<Button evalscript="testEvalScript()" @evalscript="reportEval" label='@evalscript' />
+				</Button-Group>
 			</Fold>
 		</Fold>
 
@@ -254,6 +257,9 @@ export default {
 		},
 		reportActive(data) {
 			console.log(data)
+		},
+		reportEval(value) {
+			console.log('Returned value from evalscript:', value)
 		}
 	}
 };
