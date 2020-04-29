@@ -4,7 +4,7 @@
     <brutalism-title />
     <host-icons />
     <Button-Group style="font-size: 12px;">
-      <Button block goto="https://battleaxe.dev">See the docs</Button>
+      <Button block goto="https://battleaxe.dev/brutalism-docs/#/">See the docs</Button>
       <Button block goto="https://github.com/Inventsable/brutalism#-brutalism">See the code</Button>
       <Button block goto="https://github.com/Inventsable/brutalism/issues/new">Report a bug</Button>
       <Button block goto="">Get some help</Button>
