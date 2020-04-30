@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Menus refresh />
+    <Menus refresh debug />
 		<Panel app="ILST" theme="darkest" :gradient="null">
 			<router-view />
 		</Panel>
-		<Tabs invert emit-to-parent :routes="routes" />
+		<Tabs filled invert emit-to-parent :routes="routes" />
 	</div>
 </template>
 

@@ -38,11 +38,11 @@
 
 		<Fold label="Dropdown" :open="checkFoldParent('dropdown')">
 			<Fold label="Styles" :open="getFoldData('dropdown', 'styles').open">
-				<Dropdown label="Default" :items="['Item 1', 'Item 2']" />
+				<Dropdown label="Default" :items="['Item 1', 'Item 2']" :active="1" />
 			</Fold>
 			<Fold label="Props" :open="getFoldData('dropdown', 'props').open">
 				<Dropdown label='label-to-left' :items="dropdown2" :active="1" label-to-left />
-				<Dropdown label='label-to-right' :items="dropdown2" :active="2" label-to-right />
+				<Dropdown label='label-to-right' :items="dropdown2" :active="1" label-to-right />
 				<Dropdown label='active="ILST" (targeting item.value)' :items="dropdown2" active="ILST" />
 				<Dropdown label='active="Item 3" (targeting item as string value)' :items="dropdown1" active="Item 3" />
 				<Dropdown label=':active="2" (targeting index)' :items="dropdown2" :active="2" />
