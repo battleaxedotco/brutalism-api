@@ -38,7 +38,7 @@
 
 		<Fold label="Dropdown" :open="checkFoldParent('dropdown')">
 			<Fold label="Styles" :open="getFoldData('dropdown', 'styles').open">
-				<Dropdown label="Default style" :items="dropdown1" :active="0" />
+				<Dropdown label="Default" :items="['Item 1', 'Item 2']" />
 			</Fold>
 			<Fold label="Props" :open="getFoldData('dropdown', 'props').open">
 				<Dropdown label='label-to-left' :items="dropdown2" :active="1" label-to-left />

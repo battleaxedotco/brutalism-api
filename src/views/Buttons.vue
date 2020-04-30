@@ -62,7 +62,11 @@
 			<Fold label="Events" :open="getFoldData('button', 'events').open">
 				<Button-Group grid>
 					<Button @click="testClick" label='@click="testClick"' />
-					<Button evalscript="testEvalScript()" @evalscript="reportEval" label='@evalscript' />
+					<Button evalScript="testEvalScript()" @evalScript="reportEval" label='@evalScript' />
+					<Button 
+						:evalScript="`testEvalScript('${ JSON.stringify({ msg: 'data' }) }')`" 
+						@evalScript="reportEval" label='template literal evalScript' />
+					<Button :evalScript="`error(some)`" @evalScript="reportEval" label='error' />
 				</Button-Group>
 			</Fold>
 		</Fold>
@@ -244,6 +248,7 @@
 <script>
 // Adding browser route matching
 import routeMatcher from '../mixins/routeMatching'
+import { evalScript } from 'brutalism'
 
 export default {
 	mixins: [routeMatcher],
@@ -260,7 +265,7 @@ export default {
 		},
 		reportEval(value) {
 			console.log('Returned value from evalscript:', value)
-		}
+		},
 	}
 };
 </script>
