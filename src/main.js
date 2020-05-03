@@ -17,9 +17,11 @@ import {
   FileInput,
   Fold,
   Footer,
+  Link,
   Icon,
   InputScroll,
   Input,
+  Grid,
   Menus,
   PanelInfo,
   Panel,
@@ -40,9 +42,11 @@ Vue.component("Dropzone", Dropzone);
 Vue.component("File-Input", FileInput);
 Vue.component("Fold", Fold);
 Vue.component("Footer", Footer);
+Vue.component("Grid", Grid);
 Vue.component("Icon", Icon);
 Vue.component("Input-Scroll", InputScroll);
 Vue.component("Input", Input);
+Vue.component("Link", Link);
 Vue.component("Menus", Menus);
 Vue.component("Panel-Info", PanelInfo);
 Vue.component("Panel", Panel);

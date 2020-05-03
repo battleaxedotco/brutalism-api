@@ -24,5 +24,10 @@ export default new Router({
       name: 'form',
       component: () => import("./views/Form.vue")
     },
+    {
+      path: "/dropzone",
+      name: 'dropzone',
+      component: () => import("./views/Dropzone.vue")
+    },
   ]
 });

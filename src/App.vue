@@ -19,7 +19,8 @@ export default {
       { label: "Home", name: "home" },
 			{ label: "Buttons", name: "buttons" },
 			{ label: "Inputs", name: "inputs" },
-			{ label: "Form", name: "form" },
+      { label: "Form", name: "form" },
+      // { label: "Dropzone", name: "dropzone" },
 		]
   }),
 
@@ -32,4 +33,9 @@ export default {
 </script>
 
 <style>
+
+:root::-webkit-resizer {
+  background: red;
+}
+
 </style>
