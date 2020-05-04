@@ -7,6 +7,7 @@ Vue.config.productionTip = false;
 
 // Brutalism library support
 import {
+  Anno,
   Alert,
   ButtonGroup,
   Button,
@@ -18,10 +19,10 @@ import {
   Fold,
   Footer,
   Link,
+  Grid,
   Icon,
   InputScroll,
   Input,
-  Grid,
   Menus,
   PanelInfo,
   Panel,
@@ -32,6 +33,7 @@ import {
   Wrapper
 } from "brutalism";
 
+Vue.component("Anno", Anno);
 Vue.component("Alert", Alert);
 Vue.component("Button-Group", ButtonGroup);
 Vue.component("Button", Button);

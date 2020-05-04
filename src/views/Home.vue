@@ -3,13 +3,13 @@
     <battleaxe-logo />
     <brutalism-title />
     <host-icons />
-    <Button-Group style="font-size: 12px;">
+    <Button-Group>
       <Button block goto="https://battleaxe.dev/brutalism-docs/#/">See the docs</Button>
       <Button block goto="https://github.com/Inventsable/brutalism#-brutalism">See the code</Button>
       <Button block goto="https://github.com/Inventsable/brutalism/issues/new">Report a bug</Button>
       <Button block goto="">Get some help</Button>
     </Button-Group>
-    <div class="anno" style="font-size: 12px; margin: 32px auto 40px auto;">
+    <div class="anno" style="margin: 32px auto 40px auto;">
       <span class="centered">Be friends</span>
       <Button-Group label="Adam">
         <Button flat toolbar goto="" icon="gmail" icon-size="24px" />

@@ -1,41 +1,39 @@
 <template>
   <div id="app">
     <Menus refresh debug />
-		<Panel app="ILST" theme="darkest" :gradient="null">
-			<router-view />
-		</Panel>
-		<Tabs filled invert emit-to-parent :routes="routes" />
-	</div>
+    <Panel app="ILST" theme="darkest" :gradient="null">
+      <router-view />
+    </Panel>
+    <Tabs filled invert emit-to-parent :routes="routes" />
+  </div>
 </template>
 
 <script>
 // Only needed for browser version of panel
-import starlette from 'starlette'
+import starlette from "starlette";
 
 export default {
   name: "App",
   data: () => ({
     routes: [
       { label: "Home", name: "home" },
-			{ label: "Buttons", name: "buttons" },
-			{ label: "Inputs", name: "inputs" },
+      { label: "Buttons", name: "buttons" },
+      { label: "Inputs", name: "inputs" },
       { label: "Form", name: "form" },
-      // { label: "Dropzone", name: "dropzone" },
-		]
+      // { label: "Sandbox", name: "sandbox" }
+    ],
   }),
 
   // Only needed for browser version of panel
   created() {
-    if (!window.__adobe_cep__) starlette.initAs('ILST', 'darkest');
+    if (!window.__adobe_cep__) starlette.initAs("ILST", "darkest");
     // console.log(this.$route.path)
   },
 };
 </script>
 
 <style>
-
 :root::-webkit-resizer {
   background: red;
 }
-
 </style>

@@ -25,9 +25,9 @@ export default new Router({
       component: () => import("./views/Form.vue")
     },
     {
-      path: "/dropzone",
-      name: 'dropzone',
-      component: () => import("./views/Dropzone.vue")
+      path: "/sandbox",
+      name: 'sandbox',
+      component: () => import("./views/Sandbox.vue")
     },
   ]
 });
