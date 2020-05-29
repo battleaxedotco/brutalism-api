@@ -1,31 +1,46 @@
 <template>
-	<Wrapper>
-		<Divider color="red" />
-		<Divider thickness="5px" />
-		<Divider padding="5px" />
-	</Wrapper>
+  <Wrapper>
+    <Menu offset numeric input />
+    <Divider />
+    <Menu />
+    <Divider />
+    <Dragger>
+      <Icon name="home" />
+    </Dragger>
+    <Divider />
+    <Grid height="200px">
+      <Dropzone :fullscreen="false" html @drop="testDrop" />
+    </Grid>
+  </Wrapper>
 </template>
 
 <script>
 export default {
-	mounted() {
-		console.log('Hello?')
-	},
-	methods: {
-		testClick(value) {
-			console.log(value)
-		}
-	}
+  mounted() {},
+  components: {
+    Menu: require("@/components/Menu").default,
+    Dragger: require("@/components/Dragger").default,
+  },
+  data: () => ({}),
+  methods: {
+    testClick(value) {
+      console.log(value);
+    },
+    testDrop(value) {
+      console.log("Dropped:", value);
+    },
+  },
 };
 </script>
 
 <style>
-.text-test {
-	display: flex;
-	flex-direction: column;
-}
-.text-test-item {
-	padding: 3px 10px;
-	font-size: 12px;
+.placeholder {
+  border: 2px solid var(--color-border);
+  background: var(--color-header);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  height: 200px;
 }
 </style>

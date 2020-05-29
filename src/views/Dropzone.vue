@@ -1,62 +1,33 @@
 <template>
   <div class="test-page">
-  <!-- <Dropzone /> -->
-  <Grid height="400px" column>
-    <Grid>
-      <Dropzone :fullscreen="false" color="red" />
-      <Dropzone :fullscreen="false" auto-read />
-      <Dropzone :fullscreen="false" single />
+    <Grid height="100%" column class>
+      <!-- <div class="placeholder"> -->
+      <Dropzone :fullscreen="false" html auto-read @drop="testDrop1" />
+      <!-- </div> -->
+      <div class="placeholder">
+        <div class="draggable-elt" draggable="true">DRAG ME</div>
+      </div>
     </Grid>
-    <Grid>
-      <Dropzone :fullscreen="false" :accepts="[ '.jpg' ]" />
-      <Dropzone :fullscreen="false" read-folders />
-      <Dropzone :fullscreen="false" flatten />
-    </Grid>
-    <Grid>
-      <Dropzone :fullscreen="false" pure-svg />
-      <Dropzone :fullscreen="false" auto-parse />
-      <Dropzone :fullscreen="false" no-border />
-    </Grid>
-  </Grid>
-
-  <!-- <div draggable="true" style="max-width:30px;padding:20px;height:20px;background:var(--color-header);">
-    Drag me to the above
-  </div> -->
-    <!-- <Dropzone /> -->
-    <div class="grid-1">
-    </div>
-
-
-    <!-- <div class="grid-2">
-      <Grid column gap="10px" template="1fr 2fr 1fr .5fr">
-        <div style="background: red;"></div>
-        <div style="background: green;"></div>
-        <div style="background: blue;"></div>
-        <div style="background: white;"></div>
-      </Grid> -->
-    </div>
   </div>
 </template>
 
 <script>
-
 export default {
   methods: {
     testRead1(val) {
-      console.log('Reading from 1:', val)
+      console.log("Reading from 1:", val);
     },
     testDrop1(val) {
-      console.log('Testing drop 1:', val)
+      console.log("Testing drop 1:", val);
     },
     testRead2(val) {
-
-      console.log('Reading from 2:', val)
+      console.log("Reading from 2:", val);
     },
     testDrop2(val) {
-      console.log('Testing drop 2:', val)
+      console.log("Testing drop 2:", val);
     }
   }
-}
+};
 </script>
 
 <style>
@@ -76,6 +47,18 @@ export default {
   height: 100%;
 }
 
+.draggable-elt {
+  padding: 10px 20px;
+  background: var(--divider-dark);
+  cursor: grab;
+}
+
+.draggable-elt:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
 .placeholder {
   border: 2px solid var(--color-border);
   background: var(--color-header);
@@ -85,4 +68,7 @@ export default {
   font-size: 16px;
 }
 
+.placeholder:last-of-type {
+  background: var(--color-bg);
+}
 </style>

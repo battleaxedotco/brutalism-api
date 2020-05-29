@@ -1,33 +1,33 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-Vue.use(Router)
+import Vue from "vue";
+import Router from "vue-router";
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: "/",
-      name: 'home',
-      component: () => import("./views/Home.vue")
+      name: "home",
+      component: () => import("./views/Home.vue"),
     },
     {
       path: "/buttons/:parent?/:child?",
-      name: 'buttons',
-      component: () => import("./views/Buttons.vue")
+      name: "buttons",
+      component: () => import("./views/Buttons.vue"),
     },
     {
       path: "/inputs/:parent?/:child?",
-      name: 'inputs',
-      component: () => import("./views/Inputs.vue")
+      name: "inputs",
+      component: () => import("./views/Inputs.vue"),
     },
     {
       path: "/form/:parent?/:child?",
-      name: 'form',
-      component: () => import("./views/Form.vue")
+      name: "form",
+      component: () => import("./views/Form.vue"),
     },
     {
       path: "/sandbox",
-      name: 'sandbox',
-      component: () => import("./views/Sandbox.vue")
+      name: "sandbox",
+      component: () => import("./views/Sandbox.vue"),
     },
-  ]
+  ],
 });
