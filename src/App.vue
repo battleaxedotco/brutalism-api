@@ -20,7 +20,6 @@ export default {
       { label: "Buttons", name: "buttons" },
       { label: "Inputs", name: "inputs" },
       { label: "Form", name: "form" },
-      { label: "Sandbox", name: "sandbox" },
     ],
   }),
   // Only needed for browser version of panel
