@@ -13,27 +13,70 @@
       <slot />
     </div>
     <div v-else>
+      <div v-if="!multiple && clearable" class="file-picker-contents input">
+        <Input
+          @focus="clickOnSlot"
+          :pseudo="true"
+          :label="realLabel"
+          ref="pseudoinput"
+          :flat="flat"
+          :filled="filled"
+          v-model="realContents"
+          :append-outer-icon="realIcon"
+          :style="
+            `width: ${this.contents.length ? 'calc(100% - 48px)' : '100%'};`
+          "
+          truncate
+        />
+        <div class="file-picker-clear-icon input" v-show="this.contents.length">
+          <Button :icon="clearIcon" flat @click="clear" />
+        </div>
+      </div>
       <Input
         @focus="clickOnSlot"
-        v-if="!multiple"
+        v-if="!multiple && !clearable"
         :pseudo="true"
         :label="realLabel"
         ref="pseudoinput"
         :flat="flat"
         :filled="filled"
-        v-model="text"
+        v-model="realContents"
         :append-outer-icon="realIcon"
+        truncate
       />
+      <div v-if="multiple && clearable" class="file-picker-contents textarea">
+        <TextArea
+          @focus="clickOnSlot"
+          ref="pseudotextarea"
+          :pseudo="true"
+          :label="realLabel"
+          :flat="flat"
+          :filled="filled"
+          v-model="realContents"
+          :append-outer-icon="realIcon"
+          :style="
+            `width: ${this.contents.length ? 'calc(100% - 48px)' : '100%'};`
+          "
+          truncate
+        />
+        <div
+          class="file-picker-clear-icon textarea"
+          v-show="this.contents.length"
+        >
+          <Button :icon="clearIcon" flat @click="clear" />
+        </div>
+      </div>
       <TextArea
-        v-else
+        v-else-if="multiple && !clearable"
         @focus="clickOnSlot"
         ref="pseudotextarea"
         :pseudo="true"
         :label="realLabel"
         :flat="flat"
         :filled="filled"
-        v-model="text"
+        v-model="realContents"
         :append-outer-icon="realIcon"
+        truncate
       />
     </div>
   </div>
@@ -48,67 +91,87 @@ export default {
   props: {
     label: {
       type: String,
-      default: ""
+      default: "",
     },
     folder: {
       type: Boolean,
-      default: false
+      default: false,
     },
     flat: {
       type: Boolean,
-      default: false
+      default: false,
     },
     filled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     icon: {
       type: String,
-      default: ""
+      default: "",
     },
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     multiple: {
       type: Boolean,
-      default: false
+      default: false,
     },
     accepts: {
       type: [String, Array],
       default: () => {
         return ["*"];
-      }
+      },
     },
     autoParse: {
       type: Boolean,
-      default: true
+      default: true,
     },
     flatten: {
       type: Boolean,
-      default: true
+      default: true,
     },
     readFolders: {
       type: Boolean,
-      default: false
+      default: false,
     },
     encoding: {
       type: String,
-      default: "UTF-8"
+      default: "UTF-8",
     },
     autoRead: {
       type: Boolean,
-      default: false
+      default: false,
     },
     debug: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
+    depth: {
+      type: Number,
+      default: 0,
+    },
+    prefix: {
+      type: String,
+      default: "./",
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
+    clearIcon: {
+      type: String,
+      default: "close",
+    },
+    prefsId: {
+      type: String,
+      default: "",
+    },
   },
   data: () => ({
     contents: [],
     readContents: [],
-    text: "No file selected"
+    text: "No file selected",
   }),
   computed: {
     realAccepts() {
@@ -133,9 +196,49 @@ export default {
         return `Choose ${this.folder ? "Folder" : "File"}${
           this.multiple ? "s" : ""
         }`;
-    }
+    },
+    realContents() {
+      return this.contents.length
+        ? this.sanitizeContentsByDepth()
+        : `No ${this.folder ? "Folder" : "File"}${
+            this.multiple ? "s" : ""
+          } selected`;
+    },
   },
+  mounted() {},
   methods: {
+    get() {
+      return {
+        read: this.readContents,
+        contents: this.contents,
+        display: this.realContents,
+      };
+    },
+    set(array) {
+      if (this.multiple) this.contents = array;
+      else this.contents = [array[0]];
+    },
+    clear() {
+      this.$refs.filepicker.type = "text";
+      this.$refs.filepicker.type = "file";
+      this.$refs.filepicker.value = "";
+      this.$emit("clear");
+      this.reset();
+    },
+    sanitizeContentsByDepth() {
+      let result = [];
+      this.contents.forEach((path) => {
+        result.push(
+          `${this.prefix}${path
+            .split(/\/{1,}|\/{1,}/)
+            .reverse()
+            .slice(0, this.depth + 1)
+            .reverse()
+            .join("/")}`
+        );
+      });
+      return result.length > 1 ? result.join(", ") : result[0];
+    },
     // Opens a native open dialog and returns the target folder/file path as obj.path
     openDialog(title, isFolder = false) {
       if (!window.__adobe_cep__) return null;
@@ -160,35 +263,42 @@ export default {
       else await this.openFolderPicker();
     },
     async openFilePicker() {
-      console.log(this.realAccepts);
+      if (this.debug) console.log("accept:", `"${this.realAccepts}"`);
       this.$refs.filepicker.click();
     },
     async openFolderPicker() {
       let result = await this.openDialog(this.realTitle, true);
-      console.log("PREVIEW FOLDERS:");
-      console.log(result);
+      if (this.debug) console.log(result);
     },
     async fileHandler(e) {
+      // Stop this function if the user has pressed cancel
+      console.log(e);
+      if (!e.target.files.length) {
+        this.$emit("cancel");
+        return null;
+      }
+      // Otherwise reset previous values
       this.reset();
       let fileList = e.target.files;
       let temp = [];
-      if (this.autoRead)
+      if (this.autoRead) {
         for (let file of fileList)
           this.readContents.push(await this.getAsText(file));
-      this.contents = this.makeIterable(fileList).map(item => {
-        return item.path;
+      }
+      this.contents = this.makeIterable(fileList).map((item) => {
+        return item.path.replace(/\\/gm, "/");
       });
       if (this.debug) {
         if (this.autoRead) console.log(this.readContents);
         else console.log(this.contents);
       }
+      if (this.autoRead)
+        this.$emit(
+          "read",
+          this.multiple ? this.readContents : this.readContents[0]
+        );
       this.$emit("input", this.multiple ? this.contents : this.contents[0]);
-      this.$emit(
-        "read",
-        this.multiple ? this.readContents : this.readContents[0]
-      );
-      console.log("Done");
-      console.log(this.readContents);
+      this.$emit("drop", this.makeIterable(e.target.files));
     },
     makeIterable(list) {
       let result = [];
@@ -240,7 +350,7 @@ export default {
           ? await this.readDir(data[i].path)
           : data[i];
         data[i] = data[i].length
-          ? data[i].map(file => {
+          ? data[i].map((file) => {
               let child = new File([""], `${file}`, {});
               let clone = {};
               let keys = [
@@ -250,9 +360,9 @@ export default {
                 "path",
                 "size",
                 "type",
-                "webkitRelativePath"
+                "webkitRelativePath",
               ];
-              keys.forEach(key => {
+              keys.forEach((key) => {
                 clone[key] = child[key];
               });
               clone.path = `${originalpath.replace(
@@ -279,7 +389,7 @@ export default {
     },
     createError(message, evt) {
       this.errorHandler({
-        target: { error: message }
+        target: { error: message },
       });
       console.log("HTML not yet supported! Files only.");
     },
@@ -302,13 +412,36 @@ export default {
       data.length
         ? this.$emit("input", data)
         : this.createError("Unsupported file type for Drop event");
-    }
+    },
     //
-  }
+  },
 };
 </script>
 
 <style>
 .brutalism-filepicker {
+}
+.file-picker-contents {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.file-picker-clear-icon {
+  padding: 0px 5px;
+  height: 100%;
+}
+
+.file-picker-contents.input {
+  align-items: flex-end;
+}
+.file-picker-clear-icon.input {
+  margin: 0px 0px 6px 0px;
+}
+
+.file-picker-contents.textarea {
+  align-items: flex-start;
+}
+.file-picker-clear-icon.textarea {
+  margin: 23px 0px 0px 0px;
 }
 </style>

@@ -3,11 +3,35 @@
     <File-Input isFolder />
     <File-Picker filled folder label="Choosing folders" />
     <File-Picker auto-read label="auto-read" @read="testRead" />
-    <File-Picker filled @input="testInput" />
-    <File-Picker>
-      <Dropzone :fullscreen="false" auto-read @read="testRead">
+    <File-Picker filled label="filled" @input="testInput" />
+    <File-Picker clearable ref="test" label="clearable" @input="testInput" />
+    <File-Picker
+      clearable
+      multiple
+      label="clearable multiple"
+      @input="testInput"
+    />
+
+    <File-Picker
+      auto-read
+      multiple
+      @drop="testDrop"
+      @input="testInput"
+      @read="testRead"
+    >
+      <Dropzone
+        :fullscreen="false"
+        readFolders
+        auto-read
+        flatten
+        @drop="testDrop"
+        @input="testInput"
+        @read="testRead"
+      >
         <template v-slot:prompt>
-          <div class="placeholder">Drop files or click here to open file picker</div>
+          <div class="placeholder">
+            Drop files or click here to open file picker
+          </div>
         </template>
         <template v-slot:overlay>
           <div class="placeholder">v-slot:overlay while dragging</div>
@@ -19,11 +43,14 @@
 
 <script>
 export default {
-  mounted() {},
+  mounted() {
+    let test = ["file/path/file1.json", "file/path/file2.json"];
+    this.$refs.test.set(test);
+  },
   components: {
     Menu: require("@/components/Menu").default,
     Dragger: require("@/components/Dragger").default,
-    "File-Picker": require("@/components/FilePicker").default
+    "File-Picker": require("@/components/FilePicker").default,
   },
   data: () => ({}),
   methods: {
@@ -36,8 +63,12 @@ export default {
     testRead(value) {
       console.log("Read value:");
       console.log(value);
-    }
-  }
+    },
+    testDrop(value) {
+      console.log("Drop value:");
+      console.log(value);
+    },
+  },
 };
 </script>
 
