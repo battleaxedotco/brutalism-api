@@ -1,27 +1,21 @@
 <template>
   <Wrapper>
-    <File-Input isFolder />
-    <File-Picker filled folder label="Choosing folders" />
+    <File-Picker filled folder label="Custom label" />
     <File-Picker auto-read label="auto-read" @read="testRead" />
     <File-Picker filled label="filled" @input="testInput" />
     <File-Picker clearable ref="test" label="clearable" @input="testInput" />
     <File-Picker
-      clearable
-      multiple
-      label="clearable multiple"
-      @input="testInput"
-    />
-
-    <File-Picker
       auto-read
-      multiple
+      clearable
+      prefs-id="testFile"
       @drop="testDrop"
       @input="testInput"
       @read="testRead"
-    >
+      label="prefs-id"
+    />
+    <File-Picker auto-read @drop="testDrop" @input="testInput" @read="testRead">
       <Dropzone
         :fullscreen="false"
-        readFolders
         auto-read
         flatten
         @drop="testDrop"
@@ -45,12 +39,12 @@
 export default {
   mounted() {
     let test = ["file/path/file1.json", "file/path/file2.json"];
-    this.$refs.test.set(test);
+    // this.$refs.test.set(test);
   },
   components: {
     Menu: require("@/components/Menu").default,
     Dragger: require("@/components/Dragger").default,
-    "File-Picker": require("@/components/FilePicker").default,
+    // "File-Picker": require("@/components/FilePicker").default,
   },
   data: () => ({}),
   methods: {

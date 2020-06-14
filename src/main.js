@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
 
 Vue.config.productionTip = false;
 // Vue.config.devtools = false;
@@ -30,7 +30,9 @@ import {
   Tabs,
   TextArea,
   Toggle,
-  Wrapper
+  Wrapper,
+  FilePicker,
+  ColorPicker,
 } from "brutalism";
 
 Vue.component("Anno", Anno);
@@ -42,6 +44,8 @@ Vue.component("Divider", Divider);
 Vue.component("Dropdown", Dropdown);
 Vue.component("Dropzone", Dropzone);
 Vue.component("File-Input", FileInput);
+Vue.component("File-Picker", FilePicker);
+Vue.component("Color-Picker", ColorPicker);
 Vue.component("Fold", Fold);
 Vue.component("Footer", Footer);
 Vue.component("Grid", Grid);
@@ -60,5 +64,5 @@ Vue.component("Wrapper", Wrapper);
 
 new Vue({
   router,
-  render: h => h(App)
-}).$mount('#app');
+  render: (h) => h(App),
+}).$mount("#app");
