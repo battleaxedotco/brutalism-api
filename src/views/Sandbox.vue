@@ -6,6 +6,7 @@
       multiple
       label="Multiple switches to TextArea"
       @input="testInput"
+      ref="filepick"
     />
     <File-Picker auto-read @drop="testDrop" @input="testInput" @read="testRead">
       <Dropzone
@@ -26,26 +27,32 @@
       </Dropzone>
     </File-Picker>
     <Divider />
-    <Color-Picker label="Prefs id" prefs-id="example" />
+    <Color-Picker label="Prefs id" prefs-id="example" @update="showColor" />
     <Anno size="12px">Below has editable Input component:</Anno>
-    <Color-Picker editable />
+    <Color-Picker editable @update="showColor" />
     <Color-Picker
-      label="Custom label and two-way v-model bind"
+      label="two-way v-model bind"
       v-model="test"
+      @update="showColor"
+      ref="colorpick"
     />
     <Anno size="12px">{{ `v-model sync: ${test}` }}</Anno>
     <Color-Picker label="Disabled" disabled />
-    <Color-Picker>
+    <Color-Picker @update="showColor">
       <Button>I'm a slot also used as a color picker</Button>
     </Color-Picker>
   </Wrapper>
 </template>
 
 <script>
+const fs = require("fs");
+
 export default {
   mounted() {
-    let test = ["file/path/file1.json", "file/path/file2.json"];
-    // this.$refs.test.set(test);
+    if (!fs) {
+    }
+    this.$refs.filepick.set(["file/path/file1.json", "file/path/file2.json"]);
+    this.$refs.colorpick.realValue = "#00aaff";
   },
   components: {
     Menu: require("@/components/Menu").default,
@@ -70,6 +77,9 @@ export default {
     testDrop(value) {
       console.log("Drop value:");
       console.log(value);
+    },
+    showColor(value) {
+      console.log(`Color value is:`, value);
     },
   },
 };

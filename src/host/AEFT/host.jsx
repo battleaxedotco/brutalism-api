@@ -1,18 +1,1 @@
-console.log('Script is loaded! Host is online.')
-
-function testEvalScript(msg) {
-  console.log('Host is online')
-  if (msg) alert(isJson(msg))
-  else alert('Hello world')
-  return msg ? JSON.stringify(msg) : {
-    data: 'Hello world!'
-  }
-}
-
-function isJson(text) {
-  try {
-    return JSON.parse(text)
-  } catch(err) {
-    alert(err)
-  }
-}
+// Want to use this? Using VSCode? Press control + shift + B and select 'tsc watch: [panel]/src/host/AEFT/tsconfig.json'
