@@ -1,30 +1,23 @@
 <template>
   <Wrapper>
-    <File-Picker filled folder label="Custom label" />
-    <File-Picker auto-read label="auto-read" @read="testRead" />
-    <File-Picker filled label="filled" @input="testInput" />
-    <File-Picker clearable ref="test" label="clearable" @input="testInput" />
+    <File-Picker label="default file" @input="testInput" />
+    <File-Picker folder label="default folder" @input="testInput" />
     <File-Picker
-      auto-read
-      clearable
-      prefs-id="testFile"
-      @drop="testDrop"
+      multiple
+      label="Multiple switches to TextArea"
       @input="testInput"
-      @read="testRead"
-      label="prefs-id"
     />
     <File-Picker auto-read @drop="testDrop" @input="testInput" @read="testRead">
       <Dropzone
         :fullscreen="false"
         auto-read
-        flatten
         @drop="testDrop"
         @input="testInput"
         @read="testRead"
       >
         <template v-slot:prompt>
           <div class="placeholder">
-            Drop files or click here to open file picker
+            Fully featured hybrid Dropzone/File-Picker
           </div>
         </template>
         <template v-slot:overlay>
@@ -32,6 +25,19 @@
         </template>
       </Dropzone>
     </File-Picker>
+    <Divider />
+    <Color-Picker label="Prefs id" prefs-id="example" />
+    <Anno size="12px">Below has editable Input component:</Anno>
+    <Color-Picker editable />
+    <Color-Picker
+      label="Custom label and two-way v-model bind"
+      v-model="test"
+    />
+    <Anno size="12px">{{ `v-model sync: ${test}` }}</Anno>
+    <Color-Picker label="Disabled" disabled />
+    <Color-Picker>
+      <Button>I'm a slot also used as a color picker</Button>
+    </Color-Picker>
   </Wrapper>
 </template>
 
@@ -44,9 +50,12 @@ export default {
   components: {
     Menu: require("@/components/Menu").default,
     Dragger: require("@/components/Dragger").default,
-    // "File-Picker": require("@/components/FilePicker").default,
+    // "Color-Picker": require("@/components/Color-Picker").default,
   },
-  data: () => ({}),
+  data: () => ({
+    test: "#fff",
+    color: "",
+  }),
   methods: {
     testClick(value) {
       console.log(value);
