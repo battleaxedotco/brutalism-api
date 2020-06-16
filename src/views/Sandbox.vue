@@ -1,6 +1,6 @@
 <template>
   <Wrapper>
-    <File-Picker label="default file" @input="testInput" />
+    <File-Picker label="default file" :depth="2" clearable @input="testInput" />
     <File-Picker folder label="default folder" @input="testInput" />
     <File-Picker
       multiple
@@ -30,6 +30,8 @@
     <Color-Picker label="Prefs id" prefs-id="example" @update="showColor" />
     <Anno size="12px">Below has editable Input component:</Anno>
     <Color-Picker editable @update="showColor" />
+    <Color-Picker editable filled @update="showColor" />
+    <Color-Picker editable flat @update="showColor" />
     <Color-Picker
       label="two-way v-model bind"
       v-model="test"
