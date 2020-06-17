@@ -20,7 +20,7 @@ export default {
       { label: "Buttons", name: "buttons" },
       { label: "Inputs", name: "inputs" },
       { label: "Form", name: "form" },
-      { label: "Sandbox", name: "sandbox", disabled: false },
+      // { label: "Sandbox", name: "sandbox", disabled: false },
     ],
   }),
   computed: {},
